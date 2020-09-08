@@ -1,0 +1,13 @@
+//Escreva um algoritmo que solicita ao usuário duas informações no formato texto e depois exibe os dois textos fornecidos de forma concatenada.
+início {
+    caractere: texto1;
+    caractere: texto2;
+    caractere: concatenacao;
+    
+    leia("DIGITE O PRIMEIRO TEXTO: ", texto1);
+    leia("DIGITE O SEGUNDO TEXTO: ", texto2);
+    
+    concatenacao = concatene(texto1, texto2);
+    
+    escreva("RESULTADO DA CONCATENAÇÃO: ", concatenacao);
+}

@@ -1,0 +1,13 @@
+//Escreva um algoritmo que solicita ao usuário 2 valores reais via teclado e depois exibe a soma dos números fornecidos. 
+início {
+    real: valor1;
+    real: valor2;
+    real: soma;
+    
+    leia("DIGITE UM NÚMERO REAL: ", valor1);
+    leia("DIGITE UM NÚMERO REAL: ", valor2);
+    
+    soma = valor1 + valor2;
+    
+    escreva(valor1, " + ", valor2, " = ", soma);
+}
