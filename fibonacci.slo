@@ -1,0 +1,40 @@
+início {
+    inteiro: quantidade;
+    inteiro: auxiliar;
+    inteiro: n1;
+    inteiro: n2;
+    inteiro: contador;
+    
+    caractere: sequencia_fibonacci;
+    caractere: separador;
+    separador = ", ";
+    
+    leia("DIGITE A QUANTIDADE DE NÚMEROS DE FIBONACCI DESEJADOS: ", quantidade);
+    
+    se (quantidade > 0) {
+        n1 = 0;
+        n2 = 1;
+        contador = 0;
+        enquanto (contador != quantidade) {
+            se (contador == 0) {
+                //escreva(n1);
+                sequencia_fibonacci = concatene(sequencia_fibonacci, n1);
+            } senão se (contador == 1) {
+                //escreva(n2);
+                sequencia_fibonacci = concatene(sequencia_fibonacci, separador);
+                sequencia_fibonacci = concatene(sequencia_fibonacci, n2);
+            } senão {
+                auxiliar = n1 + n2;
+                n1 = n2;
+                n2 = auxiliar;
+                //escreva(auxiliar);
+                sequencia_fibonacci = concatene(sequencia_fibonacci, separador);
+                sequencia_fibonacci = concatene(sequencia_fibonacci, auxiliar);
+            }
+            contador = contador + 1;
+        }
+        escreva("SEQUÊNCIA DE " + quantidade + " DE FIBONACCI: " + sequencia_fibonacci);
+    } senão {
+        escreva("VALOR INVÁLIDO.");
+    }
+}

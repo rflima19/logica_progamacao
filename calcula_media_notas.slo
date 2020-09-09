@@ -1,0 +1,21 @@
+// Escreva um algoritmo capaz de calcular a média de notas de um aluno. O usuário deve
+// fornecer as notas sequencialmente. Assim que a nota -1 for fornecida, o algoritmo deve
+// calcular a média de todas as notas fornecidas anteriormente, exibir o resultado e terminar.
+início {
+    inteiro: contador;
+    real: nota;
+    real: soma;
+    real:  media;
+    
+    repita {
+        leia("DIGITE A NOTA:     -1 PARA SAIR ", nota);
+        se (nota >= 0.0) {
+            soma = soma + nota;
+            contador = contador + 1;
+        }
+    } enquanto(nota >= 0.0);
+    
+    media = soma / contador;
+    
+    escreva("MÉDIA FINAL: " + media);
+}

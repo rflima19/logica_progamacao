@@ -1,0 +1,20 @@
+// Escreva um algoritmo que mostre os valores pares compreendidos entre uma sequência numérica, cujos valores mínimo e máximo são definidos pelo usuário.
+início {
+    inteiro: inicio;
+    inteiro: fim;
+    
+    leia("DIGITE O NÚMERO INICIAL DA SEQUÊNCIA: ", inicio);
+    leia("DIGITE O NÚMERO FINAL DA SEQUÊNCIA: ", fim);
+    
+    se (inicio < fim) {
+        escreva("NÚMEROS PARES DA SEQUÊNCIA DE " + inicio + " -> " + fim);
+        enquanto (inicio <= fim) {
+            se (inicio % 2 == 0) {
+                escreva(inicio);
+            }
+            inicio = inicio + 1;
+        }
+    } senão {
+        escreva("INVÁLIDO: NÚMERO INICIAL (" + inicio + ") MAIOR OU IGUAL AO NÚMERO FINAL (" + fim + ")");
+    }
+}

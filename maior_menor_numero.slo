@@ -1,0 +1,24 @@
+// Escreva um algoritmo que recebe 5 números inteiros. Depois, mostra qual o menor valor e o maior valor fornecido.
+início {
+    inteiro: numero;
+    inteiro: maior;
+    inteiro: menor;
+    inteiro: contador;
+    
+    para contador de 0 até 4 passo 1 {
+        leia("DIGITE UM NÚMERO: ", numero);
+        se (contador == 0) {
+            maior = numero;
+            menor = numero;
+        } senão {
+            se (numero > maior) {
+                maior = numero;
+            } senão se (numero < menor) {
+                menor = numero;
+            }
+        }
+    }
+    
+    escreva("MAIOR NÚMERO DIGITADO: " + maior);
+    escreva("MENOR NÚMERO DIGITADO: " + menor);
+}
