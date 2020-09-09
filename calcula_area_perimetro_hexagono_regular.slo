@@ -1,0 +1,18 @@
+início {
+    real: area;
+    real: perimetro;
+    real: lado;
+    
+    leia("DIGITE O VALOR DO LADO DO HEXÁGONO REGULAR: ", lado);
+    
+    se (lado > 0) {
+        perimetro = 6 * lado;
+        area = (3 * pot(lado, 2) * rad(3.0)) / 2;
+        
+        escreva("HEXÁGONO REGULAR DE LADO " + lado);
+        escreva("ÁREA = " + area);
+        escreva("PERÍMETRO = " + perimetro);
+    } senão {
+        escreva("VALOR INVÁLIDO: O VALOR DO LADO DEVE SER MAIOR QUE ZERO.");
+    }
+}

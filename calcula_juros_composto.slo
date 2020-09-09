@@ -1,0 +1,19 @@
+// formula juros composto: fv = pv X (1 + i)^n
+// fv = valor futuro
+// pv = valor presente
+// i = juros
+// n = tempo
+início {
+    real: valor_futuro;
+    real: valor_presente;
+    real: taxa_juros;
+    inteiro: prazo;
+    
+    leia("DIGITE O VALOR A VISTA DO BEM: ", valor_presente);
+    leia("DIGITE A TAXA DE JUROS APLICADA: ", taxa_juros);
+    leia("DIGITE O PRAZO DE PAGAMENTO EM MESES: ", prazo);
+    
+    valor_futuro = valor_presente * pot(1 + taxa_juros / 100, prazo);
+    
+    escreva("O VALOR FUTURO A SER PAGO SOBRE O VALOR DE R$ " + valor_presente + " A UMA TAXA DE JUROS DE " + taxa_juros + "% NO PRAZO DE " + prazo + " MESES É DE: R$ " + valor_futuro);
+}

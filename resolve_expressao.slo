@@ -1,0 +1,10 @@
+início {
+    lógico: v;
+    lógico: x;
+    
+    leia("DIGITE O VALOR DA VARIÁVEL LÓGICA v: ", v);
+    
+    x = 5 * 3 + rad(7 * 7) <= 100 ou (não(v) e v);
+    
+    escreva("VALOR DA EXPRESSÃO: " + x);
+}

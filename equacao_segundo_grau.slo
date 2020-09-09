@@ -1,0 +1,35 @@
+// Escreva um algoritmo que encontre as raízes de uma equação do segundo grau, a partir dos valores a, b e c fornecidos pelo usuário.
+início {
+    real: a;
+    real: b;
+    real: c;
+    real: delta;
+    real: raiz1;
+    real: raiz2;
+    
+    enquanto(a == 0) {
+        leia("DIGITE O VALOR DE a: ", a);
+        se (a == 0)  {
+            escreva("O VALOR DE a DEVE SER DIFERENTE DE ZERO.");
+        }
+    }
+    leia("DIGITE O VALOR DE b: ", b);
+    leia("DIGITE O VALOR DE c: ", c);
+    
+    delta = rad(pot(b,2) - 4 * a * c);
+    
+    se (delta >= 0) {
+        se(b == 0 ou c == 0){
+            escreva("EQUAÇÃO DE 2° GRAU INCOMPLETA.");
+        }
+        
+        raiz1 = ((-1 * b) + delta) / (2 * a);
+        raiz2 = ((-1 * b) - delta) / (2 * a);
+        
+        escreva(a + "x^2 + " + b + "x + " + c + " = 0");
+        escreva("RAIZ 1 = " + raiz1);
+        escreva("RAIZ 2 = " + raiz2);
+    } senão {
+        escreva("NÚMERO IMAGINÁRIO: DELTA MENOR QUE ZERO.");
+    }
+}
