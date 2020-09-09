@@ -1,0 +1,45 @@
+// Crie um algoritmo que permita cadastrar 5 alunos de uma escola. Para cada aluno, é preciso
+// fornecer o seu nome e a informação indicando se ele foi aprovado ou reprovado. Depois do
+// cadastro, o algoritmo deve mostrar quantos foram os alunos aprovados e seus respectivos
+// nomes. Crie um tipo customizado para representar um aluno.
+
+tipo aluno {
+    caractere: nome;
+    caractere: situacao;
+}
+
+início {
+    aluno: alunos[5];
+    inteiro: contador;
+    inteiro: auxiliar;
+    inteiro: quantidade_aprovados;
+    
+    auxiliar = 0;
+    quantidade_aprovados = 0;
+    para contador de 0 até 4 passo 1 {
+        leia("DIGITE O NOME DO ALUNO: ", alunos[contador].nome);
+        
+        repita {
+            leia("SITUAÇÃO:  DIGITE 1 PARA APROVADO    DIGITE 2 PARA REPROVADO", auxiliar);
+            
+            se (auxiliar == 1) {
+                alunos[contador].situacao = "APROVADO";
+                quantidade_aprovados = quantidade_aprovados + 1;
+            } senão se (auxiliar == 2) {
+                alunos[contador].situacao = "REPROVADO";
+            } senão {
+                escreva("VALOR INVÁLIDO: DIGITE 1 PARA APROVADO    DIGITE 2 PARA REPROVADO");
+            }
+        } enquanto(auxiliar < 1 ou auxiliar > 2);
+    }
+    
+    escreva("QUANTIDADE DE APROVADOS: " + quantidade_aprovados);
+    se (quantidade_aprovados > 0) {
+        escreva("ALUNOS APROVADOS: ");
+        para contador de 0 até 4 passo 1 {
+            se (alunos[contador].situacao == "APROVADO") {
+                escreva("NOME: " + alunos[contador].nome);
+            }
+        }
+    }
+}

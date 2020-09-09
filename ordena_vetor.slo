@@ -1,0 +1,28 @@
+// Ordenar vetor de 5 posições
+início {
+    inteiro: i;
+    inteiro: j;
+    inteiro: auxiliar;
+    inteiro: vetor[5];
+    
+    para i de 0 até 4 passo 1 {
+        leia("DIGITE UM NÚMERO INTEIRO: ", vetor[i]);
+    }
+    
+    para i de 0 até 3 passo 1 {
+        j = i + 1;
+        enquanto(j <= 4) {
+            se (vetor[i] > vetor[j]) {
+                auxiliar = vetor[i];
+                vetor[i] = vetor[j];
+                vetor[j] = auxiliar;
+            }
+            j = j + 1;
+        }
+    }
+    
+    escreva("VETOR ORDENADO DE FORMA CRESCENTE: ");
+    para i de 0 até 4 passo 1 {
+        escreva(vetor[i]);
+    }
+}

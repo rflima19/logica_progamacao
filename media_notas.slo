@@ -1,0 +1,20 @@
+// Crie um algoritmo que lê a nota de 5 alunos e depois exibe as notas fornecidas, bem como a média entre elas. Utilize um vetor para armazenar as notas. 
+início {
+    real: soma;
+    real: media;
+    real: notas[5];
+    inteiro: contador;
+    
+    para contador de 0 até 4 passo 1 {
+       leia("DIGITE A NOTA: ", notas[contador]);
+       soma = soma + notas[contador];
+    }
+    
+     para contador de 0 até 4 passo 1 {
+       escreva("NOTA[" + contador + "]: ", notas[contador]);
+    }
+    
+    media = soma / contador;
+    
+    escreva("MÉDIA FINAL: " + media);
+}

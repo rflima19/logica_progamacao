@@ -1,0 +1,30 @@
+// Soma matrizes
+início {
+    inteiro: matriz1[2][2];
+    inteiro: matriz2[2][2];
+    inteiro: matriz_soma[2][2];
+    inteiro: i;
+    inteiro: j;
+    
+    matriz1[0][0] = 4;
+    matriz1[0][1] = 4;
+    matriz1[1][0] = 4;
+    matriz1[1][1] = 4;
+    
+    matriz2[0][0] = 4;
+    matriz2[0][1] = 4;
+    matriz2[1][0] = 4;
+    matriz2[1][1] = 4;
+    
+    para i de 0 até 1 passo 1 {
+        para j de 0 até 1 passo 1 {
+            matriz_soma[i][j] = matriz1[i][j] + matriz2[i][j];
+        }
+    }
+    
+    para i de 0 até 1 passo 1 {
+        para j de 0 até 1 passo 1 {
+            escreva(i + ", " + j + " = " + matriz_soma[i][j]);
+        }
+    }
+}
