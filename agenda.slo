@@ -1,0 +1,77 @@
+// Escreva um algoritmo que guarda alguns contatos em uma agenda telefônica (cada contato é
+// formado por um nome e um telefone). Depois, o usuário deverá fornecer um nome, que será
+// utilizado para pesquisar na agenda. Se o nome for encontrado, o nome e o telefone do contato
+// devem ser exibidos. Caso contrário, uma mensagem indicando que o registro não foi
+// encontrado deve ser exibida.
+
+tipo contato {
+    caractere: nome;
+    caractere: telefone;
+}
+
+início {
+    inteiro: opcao;
+    arquivo: arq;
+    caractere: nome_busca;
+    contato: c;
+    inteiro: aux;
+    
+    repita {
+        leia("DIGITE A OPÇÃO DESEJADA:  1 PARA GUARDAR CONTADO     2 PARA BUSCAR CONTATO     0 PARA SAIR", opcao);
+        
+        se (opcao == 1) {
+            leia("NOME DO NOVO CONTATO: ", c.nome);
+            leia("TELEFONE DO NOVO CONTATO: ", c.telefone);
+            
+            // ABRE O ARQUIVO PARA LEITURA
+            abra(arq);
+            
+            // CHEGAR AO FIM DO ARQUIVO PARA PODER INSERIR UM NOVO REGISTRO
+            enquanto (não(fda(arq))) {
+                avance(arq);
+            }
+            
+            // GUARDA O NOVO REGISTRO NO ARQUIVO
+            guarde(arq, c);
+            
+            // FECHA O ARQUIVO
+            feche(arq);
+            
+            escreva("CONTATO " + c.nome + " SALVO COM SUCESSO.");
+        } senão se (opcao == 2) {
+            // VARIÁVEL AUXÍLIAR PARA INDICAR SE O CONTATO FOI ENCONTRADO
+            aux = 0;
+            
+            leia("DIGITE O NOME DO CONTATO DESEJADO: ", nome_busca);
+            
+            // ABRE O ARQUIVO PARA LEITURA
+            abra(arq);
+            
+            // PERCORRE O ARQUIVO EM BUSCA DO REGISTRO SOLICITADO
+            enquanto (não(fda(arq))) {
+                copie(arq, c);
+                
+                se (c.nome == nome_busca) {
+                    aux = 1;
+                    escreva("CONTATO ENCONTRADO:");
+                    escreva("NOME: " + c.nome);
+                    escreva("TELEFONE: " + c.telefone);
+                }
+                
+                avance(arq);
+            }
+            
+            se (aux == 0) {
+                escreva("CONTATO COM NOME " + nome_busca + " NÃO ENCONTRADO.");
+            } 
+            
+            // FECHA O ARQUIVO
+            feche(arq);
+            
+        } senão se (opcao == 0) {
+            escreva("FIM DO PROGRAMA.");
+        } senão {
+            escreva("OPÇÃO INVÁLIDA.");
+        }
+    } enquanto(opcao != 0);
+}

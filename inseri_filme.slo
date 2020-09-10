@@ -1,0 +1,45 @@
+// Escreva um algoritmo que insere filmes em um catálogo. Um filme é composto por um nome
+// e um ano. Todas as vezes que o algoritmo for executado, estas informações devem ser
+// definidas pelo usuário. Se o catálogo já tiver filmes cadastrados, o novo filme deve ser inserido no final.
+
+tipo filme {
+    caractere: nome;
+    inteiro: ano;
+}
+
+início {
+    arquivo: catalogo_filmes;
+    filme: f;
+    
+    leia("DIGITE O NOME DO FILME: ", f.nome);
+    
+    leia("DIGITE O ANO DO: ", f.ano);
+    
+    // ABRE O ARQUIVO PARA LEITURA
+    abra(catalogo_filmes);
+    
+    // CHEGAR AO FIM DO ARQUIVO PARA PODER INSERIR UM NOVO REGISTRO
+    enquanto(não(fda(catalogo_filmes))) {
+        avance(catalogo_filmes);
+    }
+    
+    // GUARDA O NOVO REGISTRO NO ARQUIVO
+    guarde(catalogo_filmes, f);
+    
+    // FECHA O ARQUIVO
+    feche(catalogo_filmes);
+    
+    // ABRE O ARQUIVO PARA LEITURA
+    abra(catalogo_filmes);
+    
+    // PERCORRE O ARQUIVO PARA IMPRIMIR OS DADOS
+    escreva("CATÁLAGO DE FILMES:");
+    enquanto (não(fda(catalogo_filmes))) {
+        copie(catalogo_filmes, f);
+        escreva("--------------------------------------------");
+        escreva("NOME: " + f.nome);
+        escreva("ANO: " + f.ano);
+        escreva("--------------------------------------------");
+        avance(catalogo_filmes);
+    }
+}

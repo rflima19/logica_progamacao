@@ -1,0 +1,105 @@
+// Escreva um algoritmo que cria dois arquivos cujos elementos são livros (um livro é composto
+// por nome, autor, assunto e número de páginas). Em cada um dos arquivos, insira alguns livros
+// de exemplo.
+// Depois, o algoritmo deve criar um terceiro arquivo, também de livros, contendo todos os
+// registros presentes nos dois arquivos anteriormente criados. Após criar este novo arquivo,
+// imprima os dados de todos os livros cadastrados nele.
+
+tipo livro {
+    caractere: nome;
+    caractere: autor;
+    caractere: assunto;
+    inteiro: numero_paginas;
+}
+
+início {
+    arquivo: arq1;
+    arquivo: arq2;
+    arquivo: arq3;
+    
+    livro: l1;
+    l1.nome = "livro 1";
+    l1.autor = "autor 1";
+    l1.assunto = "programação 1";
+    l1.numero_paginas = 100;
+    
+    livro: l2;
+    l2.nome = "livro 2";
+    l2.autor = "autor 2";
+    l2.assunto = "programação 2";
+    l2.numero_paginas = 200;
+    
+    livro: l3;
+    l3.nome = "livro 3";
+    l3.autor = "autor 3";
+    l3.assunto = "programação 3";
+    l3.numero_paginas = 300;
+    
+    livro: l4;
+    l4.nome = "livro 4";
+    l4.autor = "autor 4";
+    l4.assunto = "programação 4";
+    l4.numero_paginas = 400;
+    
+    livro: livro_aux;
+    
+    // SALVAR DADOS NO ARQUIVO 1
+    abra(arq1);
+    posicione(arq1, 1);
+    guarde(arq1, l1);
+    posicione(arq1, 2);
+    guarde(arq1, l2);
+    feche(arq1);
+    
+    // SALVAR DADOS NO ARQUIVO 2
+    abra(arq2);
+    posicione(arq2, 1);
+    guarde(arq2, l3);
+    posicione(arq2, 2);
+    guarde(arq2, l4);
+    feche(arq2);
+    
+    // SALVAR DADOS DO ARQUIVO 1 NO ARQUIVO 3
+    abra(arq3);
+    enquanto(não(fda(arq3))) {
+        avance(arq3);
+    }
+    abra(arq1);
+    enquanto(não(fda(arq1))) {
+        copie(arq1, livro_aux);
+        guarde(arq3, livro_aux);
+        avance(arq1);
+        avance(arq3);
+    }
+    feche(arq1);
+    feche(arq3);
+    
+    // SALVAR DADOS DO ARQUIVO 2 NO ARQUIVO 3
+    abra(arq3);
+    enquanto(não(fda(arq3))) {
+        avance(arq3);
+    }
+    abra(arq2);
+    enquanto(não(fda(arq2))) {
+        copie(arq2, livro_aux);
+        guarde(arq3, livro_aux);
+        avance(arq2);
+        avance(arq3);
+    }
+    feche(arq2);
+    feche(arq3);
+    
+    // IMPRIME DADOS DO ARQUIVO 3
+    abra(arq3);
+    enquanto(não(fda(arq3))) {
+        copie(arq3, livro_aux);
+        escreva("-----------------------------------------------------------");
+        escreva("NOME DO LIVRO: " + livro_aux.nome);
+        escreva("AUTOR DO LIVRO: " + livro_aux.autor);
+        escreva("ASSUNTO DO LIVRO: " + livro_aux.assunto);
+        escreva("NÚMEROS DE PÁGINAS DO LIVRO: " + livro_aux.numero_paginas);
+        escreva("-----------------------------------------------------------");
+        avance(arq3);
+    }
+    feche(arq3);
+}
