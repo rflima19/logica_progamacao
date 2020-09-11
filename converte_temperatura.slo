@@ -1,0 +1,32 @@
+// Conversão temperatura
+
+início {
+    real: temperatura;
+    real: temperatura_convertida;
+    caractere: tipo_conversao;
+    
+    leia("DIGITE A TEMPERATURA: ", temperatura);
+    leia("CONVERTE PARA:   DIGITE 'C' PARA CELSIUS    DIGITE 'F' PARA FAHRENHEIT", tipo_conversao);
+    
+    se (tipo_conversao == "C" ou tipo_conversao == "c") {
+        temperatura_convertida = fahrenheit_para_celsius(temperatura);
+        escreva(temperatura + " FAHRENHEIT = " + temperatura_convertida + " CELSIUS");
+    } senão se (tipo_conversao == "F" ou tipo_conversao == "f") {
+        temperatura_convertida = celsius_para_fahrenheit(temperatura);
+        escreva(temperatura + " CELSIUS = " + temperatura_convertida + " FAHRENHEIT");
+    } senão {
+        escreva("TIPO DE CONVESÃO INVÁLIDA.");
+    }
+}
+
+função celsius_para_fahrenheit(real: temperatura_celsius) -> real {
+    real: temperatura_fahrenheit;
+    temperatura_fahrenheit = temperatura_celsius * 1.8 + 32;
+    retorne temperatura_fahrenheit;
+}
+
+função fahrenheit_para_celsius(real: temperatura_fahrenheit) -> real {
+    real: temperatura_celsius;
+    temperatura_celsius = (temperatura_fahrenheit - 32) / 1.8;
+    retorne temperatura_celsius;
+}

@@ -1,0 +1,170 @@
+// Agenda
+// Menu de opções deve ser exibido, da seguinte forma:
+// 1- Inserir
+// 2- Alterar
+// 3- Excluir
+// 4- Mostrar Todos
+// 5- Sair
+
+global arquivo: arq_agenda;
+
+tipo contato {
+    caractere: nome;
+    caractere: telefone;
+}
+
+// BUSCA A POSIÇÃO DO CONTATO NA AGENDA
+// RETORNA ZERO SE NÃO ENCONTRAR O CONTATO
+função buscar(caractere: nome) -> inteiro {
+    contato: c;
+    inteiro: posicao;
+    posicao = 0;
+    abra(arq_agenda);
+    enquanto(não(fda(arq_agenda))) {
+        copie(arq_agenda, c);
+        posicao = posicao + 1;
+        se (c.nome == nome) {
+            feche(arq_agenda);
+            retorne posicao;
+        }
+        avance(arq_agenda);
+    }
+    feche(arq_agenda);
+    retorne 0;
+}
+
+// INSERI POR POSICAO O CONTATO NA AGENDA
+função inserir_por_posicao(inteiro: posicao, contato: contato) {
+    abra(arq_agenda);
+    posicione(arq_agenda, posicao);
+    guarde(arq_agenda, contato);
+    feche(arq_agenda);
+    escreva("CONTATO ATUALIZADO COM SUCESSO.");
+}
+
+// Conta a quantidade de contatos salvos
+função quantidade_contatos() -> inteiro {
+    inteiro: quantidade;
+    quantidade = 0;
+    abra(arq_agenda);
+    enquanto (não(fda(arq_agenda))) {
+        quantidade = quantidade + 1;
+        avance(arq_agenda);
+    }
+    feche(arq_agenda);
+    retorne quantidade;
+}
+
+função inserir() {
+    contato: c;
+    inteiro: ja_existe;
+    
+    repita {
+        leia("NOME DO NOVO CONTATO: ", c.nome);
+        ja_existe = buscar(c.nome);
+        se (ja_existe > 0) {
+            escreva("O CONTATO " + c.nome + " JÁ EXISTE NA AGENDA.");
+        }
+    } enquanto(ja_existe > 0);
+    
+    leia("TELEFONE DO NOVO CONTATO: ", c.telefone);
+    
+    abra(arq_agenda);
+    enquanto (não(fda(arq_agenda))) {
+        avance(arq_agenda);
+    }
+    guarde(arq_agenda, c);
+    feche(arq_agenda);
+    
+    escreva("CONTATO " + c.nome + " SALVO COM SUCESSO.");
+}
+
+função alterar() {
+    inteiro: posicao_contato;
+    inteiro: ja_existe;
+    caractere: nome_contato;
+    
+    leia("DIGITE O NOME DO CONTATO A SER ALTERADO: ", nome_contato);
+    posicao_contato = buscar(nome_contato);
+    
+    se(posicao_contato == 0) {
+        escreva("CONTATO " + nome_contato + " NÃO EXISTE.");
+        retorne;
+    }
+    
+    contato: c;
+    repita {
+        leia("DIGITE O NOVO NOME DO CONTATO: ", c.nome);
+        ja_existe = buscar(c.nome);
+        se (ja_existe > 0) {
+            escreva("O CONTATO " + c.nome + " JÁ EXISTE NA AGENDA.");
+        }
+    } enquanto(ja_existe > 0);
+    
+    leia("DIGITE O NOVO TELEFONE DO CONTATO: ", c.telefone);
+    
+    inserir_por_posicao(posicao_contato, c);
+    
+}
+
+função excluir() {
+    inteiro: posicao_contato;
+    caractere: nome_contato;
+    
+    leia("DIGITE O NOME DO CONTATO A SER EXCLUÍDO: ", nome_contato);
+    posicao_contato = buscar(nome_contato);
+    
+    se(posicao_contato == 0) {
+        escreva("CONTATO " + nome_contato + " NÃO EXISTE.");
+        retorne;
+    }
+    
+    abra(arq_agenda);
+    posicione(arq_agenda, posicao_contato);
+    elimine(arq_agenda);
+    feche(arq_agenda);
+    
+    escreva("CONTATO EXCLUÍDO COM SUCESSO.");
+}
+
+função mostrar_todos() {
+    contato: c;
+    inteiro: quantidade;
+    quantidade = quantidade_contatos();
+    se (quantidade > 0) {
+        escreva("QUANTIDADE DE CONTATOS SALVOS: " + quantidade);
+        abra(arq_agenda);
+        enquanto (não(fda(arq_agenda))) {
+            copie(arq_agenda, c);
+            escreva("-------------------------------------------------------------");
+            escreva("NOME DO CONTATO: " + c.nome);
+            escreva("TELEFONE DO CONTATO: " + c.telefone);
+            escreva("-------------------------------------------------------------");
+            avance(arq_agenda);
+        }
+        feche(arq_agenda);
+    }
+    escreva("QUANTIDADE DE CONTATOS SALVOS: " + quantidade);
+}
+
+início {
+    inteiro: opcao;
+    
+    repita {
+        leia("DIGITE A OPÇÃO DESEJADA:  1 - INSERIR  2 - ALTERAR  3 - EXCLUIR  4 - MOSTRAR TODOS  5 - SAIR", opcao);
+        
+        se (opcao == 1) {
+            inserir();
+        } senão se (opcao == 2) {
+            alterar();
+        } senão se (opcao == 3) {
+            excluir();
+        } senão se (opcao == 4) {
+            mostrar_todos();
+        } senão se (opcao == 5) {
+            escreva("FIM DE EXECUÇÃO.");
+        } senão {
+            escreva("OPÇÃO INVÁLIDA.");
+        }
+    } enquanto(opcao != 5);
+}

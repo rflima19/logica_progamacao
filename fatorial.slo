@@ -1,0 +1,22 @@
+// Fatorial
+início {
+    inteiro: numero;
+    inteiro: f;
+    
+    leia("DIGITE UM NÚMERO INTEIRO POSITIVO: ", numero);
+    
+    se (numero > 0) {
+        f = fatorial(numero);
+        escreva(numero + "! = " + f);
+    } senão {
+        escreva("DIGITE UM NÚMERO INTEIRO POSITIVO.");
+    }
+}
+
+função fatorial(inteiro: n) -> inteiro {
+    se (n <= 0) {
+        retorne 1;
+    }
+    
+    retorne n * fatorial(n - 1);
+}
